@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Beer;
 use App\Models\Brewery;
 use App\Models\Contact;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class RandomBeerController extends Controller
 
     function getRandomBeer(): JsonResponse {
         /** @var Beer $beer */
-        $beer = Beer::inRandomOrder()->first()->get();
+        $beer = Beer::inRandomOrder()->first();
         /** @var Brewery $brewery */
         $brewery = $beer->brewery;
         $contacts = $brewery->contacts;
@@ -25,15 +26,15 @@ class RandomBeerController extends Controller
     /**
      * @param Beer $beer
      * @param Brewery $brewery
-     * @param Contact[] $contacts
+     * @param Collection $contacts
      * @return array
      */
-    private function map(Beer $beer, Brewery $brewery, array $contacts) {
+    private function map(Beer $beer, Brewery $brewery, Collection $contacts) {
         $mappedBeer = $beer->map();
         $mappedBrewery = $brewery->map();
-        $mappedContacts = array_map(function ($contact) {
+        $mappedContacts = $contacts->map(function ($contact) {
             return $contact->map();
-        }, $contacts);
+        });
 
         return array_merge(
             $mappedBeer,

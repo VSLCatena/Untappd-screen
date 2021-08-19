@@ -25,6 +25,7 @@ class Contact extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'contacts';
 
     function map() {

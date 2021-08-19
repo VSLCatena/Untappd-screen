@@ -40,6 +40,7 @@ class Beer extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'beers';
 
     function map() {
