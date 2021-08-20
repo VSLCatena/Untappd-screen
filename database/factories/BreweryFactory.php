@@ -25,7 +25,7 @@ class BreweryFactory extends Factory
             'name' => $this->faker->company(),
             'description' => $this->faker->realText(),
             'type' => $this->faker->word(),
-            'label_image' => '',
+            'label_image' => $this->faker->imageUrl(),
             'beer_count' => $this->faker->numberBetween(5, 150),
             'location_country' => $this->faker->country(),
             'location_address' => $this->faker->streetAddress(),

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Contact
@@ -33,5 +34,9 @@ class Contact extends Model
             'key' => $this->key,
             'value' => $this->value
         ];
+    }
+
+    function brewery(): BelongsTo {
+        return $this->belongsTo(Brewery::class);
     }
 }

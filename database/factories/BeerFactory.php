@@ -24,7 +24,7 @@ class BeerFactory extends Factory
         return [
             'name' => $this->faker->colorName().' '.$this->faker->firstName(),
             'description' => $this->faker->realText(),
-            'label_image' => '',
+            'label_image' => $this->faker->imageUrl(),
             'style' => $this->faker->word(),
             'abv' => $this->faker->randomFloat(1, 2, 15),
             'ibu' => $this->faker->numberBetween(1, 100),

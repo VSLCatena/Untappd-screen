@@ -13,8 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::get('/', '\App\Http\Controllers\RandomBeerController@getRandomBeer');
 Route::get('/api/random', '\App\Http\Controllers\RandomBeerController@getRandomBeer');
